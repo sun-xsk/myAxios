@@ -1,0 +1,20 @@
+{
+  "name": "my-x-axios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "axios.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sun-xsk/myAxios.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sun-xsk/myAxios/issues"
+  },
+  "homepage": "https://github.com/sun-xsk/myAxios#readme"
+}

@@ -19,8 +19,6 @@ export const xhr= (config) => {
         if (responseType) {
             request.responseType = responseType;
         }
-
-        // 判断是否有超时的配置，如果有则给request添加超时属性
         if (timeout) {
             request.timeout = timeout;
         }

@@ -1,5 +1,7 @@
 export default class InterceptorManager{
-    interceptors = [];
+    constructor(){
+        this.interceptors = []
+    }
 
     use(resolved,rejected) {
         this.interceptors.push({
@@ -7,7 +9,7 @@ export default class InterceptorManager{
             rejected
         })
           // 返回拦截器在数组中索引
-        return this.interceptors.length-1
+        // return this.interceptors.length-1
     }
   // 遍历数组
     forEach(fn){

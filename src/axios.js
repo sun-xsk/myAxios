@@ -14,6 +14,11 @@ function createInstance(config) {
     // 方法继承
     extend(instance, Axios.prototype, context);
 
+
+    instance.create = function (config) {
+        return createInstance(mergeConfig(defaults, config));
+    }
+
     // 实际返回的是request方法
     return instance;
 
@@ -23,9 +28,6 @@ function createInstance(config) {
 // 构造我的Axios
 const axios = createInstance(defaults);
 
-axios.create = function (config) {
-    return createInstance(mergeConfig(defaults, config));
-}
 
 export default axios;
 

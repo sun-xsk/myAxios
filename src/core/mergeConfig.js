@@ -57,7 +57,7 @@ export default function mergeConfig(config1,config2) {
     }
     // 这里采用的是设计模式中的“策略模式”，有效的剔除了代码中无限个 if else 的情况
     function mergeField(key) {
-        const strat = strats[key] || defaultStrat
+        const strat = strats[key] || defaultStrat;
         config[key] = strat(config1[key], config2[key])
     }
     // 导出最终的config

@@ -3,9 +3,6 @@ import InterceptorManager from "./InterceptorManager.js";
 import mergeConfig from "./mergeConfig.js";
 
 class Axios {
-    defaults={}
-    interceptors={}
-
     constructor(initConfig) {
         this.defaults = initConfig;
         this.interceptors = {
@@ -29,56 +26,54 @@ class Axios {
         // 定义一个数组，数组中放入，会发送真实请求的对象，可以想象成它也是一个拦截器
         const chain = [
             {
-                resolved: dispatchRequest,
+                resolved: dispatchRequest.bind(this,config),
                 rejected: undefined
             }
         ];
-        // 当用户使用 axios.interceptors.request.use(...) 推入了多个请求拦截器时
-        // this.interceptors.request 这里面就有多个拦截器，通过遍历拦截器，插入 chain 数组的前面
+
         this.interceptors.request.forEach((interceptor) => {
             chain.unshift(interceptor)
         })
-        // 当用户使用 axios.interceptors.response.use(...) 推入多个响应拦截器时
-        // this.interceptors.response 这里面就有多个拦截器，通过遍历拦截器，插入 chain 数组的后面
+        
         this.interceptors.response.forEach((interceptor) => {
             chain.push(interceptor)
         })
 
-        let promise = Promise.resolve(config);
-
+        let promise = Promise.resolve();
+     
         while (chain.length) {
             const { resolved, rejected } = chain.shift();
-            promise = promise.then(resolved, rejected)
+            promise = promise.then(resolved, rejected);
         }
-        
+
         return promise;
     }
 
-    get() {
+    get(url, config) {
         return this._requestMethodWithoutData('get', url, config);
     }
 
-    delete() {
+    delete(url, config) {
         return this._requestMethodWithoutData('delete', url, config);
     }
 
-    head() {
+    head(url, config) {
         return this._requestMethodWithoutData('head', url, config);
     }
 
-    options() {
+    options(url, config) {
         return this._requestMethodWithoutData('options', url, config);
     }
 
-    post() {
+    post(url, config) {
         return this._requestMethodWithData('post', url, data, config);
     }
 
-    put() {
+    put(url, config) {
         return this._requestMethodWithData('put', url, data, config);
     }
 
-    patch() {
+    patch(url, config) {
         return this._requestMethodWithData('patch', url, data, config);
     }
 

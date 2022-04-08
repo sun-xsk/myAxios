@@ -31,18 +31,11 @@ const transformResponseData = (res) => {
 };
 
 const getDefaultAdapter = () =>{
-    // let adapter;
-    // if(typeof XMLHttpRequest !== 'undefined'){
-    //     adapter = require("../adapters/xhr.js")
-    // }else if(typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]'){
-    //     adapter = require("../adapters/http");
-    // }
-    // return adapter;
     return xhr;
 }
 
 const dispatchRequest = (config) => {
-    const adapter = config.adapter || getDefaultAdapter()
+    const adapter = config.adapter || getDefaultAdapter();
     // 处理传入的配置
     processConfig(config);
     // 发送请求

@@ -13,6 +13,20 @@
 </body>
 <script type="module">
     import axios from "./src/axios.js";
+
+    axios.interceptors.request.use(function(){
+        console.log(123);
+    })
+
+    axios.interceptors.request.use(function(){
+        console.log(123);
+    })
+
+    axios.interceptors.response.use(function(res){
+        console.log(789);
+        return res
+    })
+
     axios({
         method: "get",
         url: "https://api.apiopen.top/singlePoetry",
@@ -22,6 +36,29 @@
     }).then((res) => {
         console.log(res);
     });
+
+    // axios.get('https://api.apiopen.top/singlePoetry', {
+    // 	params: {
+    // 	  ID: 12345
+    // 	}
+    //   })
+    //   .then(function (response) {
+    // 	console.log(response);
+    //   })
+
+    // let instance = axios.create({
+    //     method: "post",
+    // })
+
+    // instance({
+    //     url: "https://api.apiopen.top/singlePoetry",
+    //     params: {
+    //         bar: "baz1",
+    //     },
+    // }).then((response) => {
+    //     console.log(response);
+    // })
+
 </script>
 
 </html>
